@@ -185,7 +185,8 @@ function Login() {
                   <div className="row">
                     <div className="col-12">
                       <div className="login-button">
-                        <div className="login-forgot">Forget Password</div>
+                        {/* <div className="login-forgot" nav="/forgot">Forget Password</div> */}
+                        <a href="/forgot">Forget Password?</a>
                         <div className="login-submit">
                           <button onClick={handleLogin}>Submit</button>
                         </div>

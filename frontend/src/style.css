@@ -1,6 +1,6 @@
 .login-main {
-  height: 100vh;
-  background-image: url("./assets/images/DeskBg.png");
+  height: 100vh; 
+  background-image: url('./assets/images/DeskBg.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -50,15 +50,28 @@ section {
   align-items: center;
 }
 
+
 .login-subhead {
   justify-content: flex-start;
   display: flex;
   flex-direction: column;
   text-align: left;
 }
+.login-head {
+  display: flex;
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  flex-direction: column; 
+  margin-top: 10px;
+}
+
 .login-head img {
-  width: 190px;
-  height: 93px;
+  width: 200px;
+  height: 100px;
+  margin: auto;
+}
+.login-subhead{
+  margin-top: 50px;
 }
 .login-subhead h3 {
   font-size: 36px;
@@ -81,30 +94,90 @@ section {
 .login-button {
   margin-top: 50px;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   margin-bottom: 50px;
 }
-.login-forgot {
-  margin-top: 20px;
+.login-forgot{
+    margin-top: 15px;
 }
 .login-submit button {
-  width: 150px;
-  height: 60px;
+color: white;
+  width: 140px;
+  height: 50px;
   background-color: rgba(64, 204, 111, 1);
   border-radius: 36px;
   border-style: none;
 }
 .login-footer {
   margin-top: 50px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
 }
 .login-footer h3 {
   font-size: 12px;
 }
-.card-body {
+.card-body{
   text-align: center;
   align-items: center;
 }
+.forgot-label{
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+.forgot-submit{
+  display: flex;
+  margin-left: auto; 
 
+}
+.forgot-submit button{
+ color: white;
+  width: 140px;
+  height: 50px;
+  background-color: rgba(64, 204, 111, 1);
+  border-radius: 36px;
+  border-style: none;
+}
+.forgot-footer{
+  margin-top: 100px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+.forgot-footer h3 {
+  font-size: 12px;
+}
+
+.mpin-separator{
+  width:2.5rem
+}
+.inputWidth {
+  border: 2px solid #D5D4D2;
+  border-radius: 8px;
+  width: 60px;
+  height: 65px;
+  font-size: 14px;
+  color: #000;
+  font-weight: 400;
+  caret-color: #000;
+}
+
+@media (max-width: 767px) {
+  .inputWidth {
+    width: 40px;
+    height: 45px;
+    font-size: 12px;
+  }
+}
+@media (max-width:1000px){
+ .login-button{
+  flex-direction: column;
+  gap:10px;
+  margin-top: 10px;
+ }
+}
 @media (max-width: 768px) {
   .left-login,
   .right-login {
@@ -114,5 +187,25 @@ section {
 
   .data-login {
     width: 100%;
+  }
+  .login-button{
+    flex-direction: row;
+    margin-top: 30px;
+   }
+   .login-footer{
+    margin-top: 10px;
+   }
+   .login-subhead{
+    margin-top: 20px;
+   }
+}
+@media (max-width:1200px){
+  .mpin-separator{
+    width:1rem;
+  }
+}
+@media (max-width:1024px){
+  .mpin-separator{
+    width:1rem;
   }
 }
