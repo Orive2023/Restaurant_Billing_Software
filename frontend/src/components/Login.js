@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import slider1 from "../assets/images/supermarket-worker-measuring-selling-meat-customer.png";
 import slider2 from "../assets/images/side-view-male-chef-flambeing-dish.png";
 import slider3 from "../assets/images/couple-enjoying-food-restaurant.png";
@@ -6,8 +6,56 @@ import TextField from "@mui/material/TextField";
 import login from "../assets/images/logooo 1.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const nav = useNavigate();
+  useEffect(() => {
+    const checkLoggedIn = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3500/api/auth/refresh-token",
+          null,
+          { withCredentials: true }
+        );
+        if (response.data.accessToken) {
+          nav("/dashboard", { state: jwtDecode(response.data.accessToken) });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    checkLoggedIn();
+  }, []);
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  console.log(formData);
+
+  const handleLogin = async () => {
+    await axios
+      .post("http://localhost:3500/api/auth/login", formData, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        nav("/dashboard", { state: jwtDecode(res.data.accessToken) });
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <div className="login-main">
       <section className="p-3 p-md-4 p-xl-5 h-100">
@@ -111,9 +159,13 @@ function Login() {
                         <label className="login-label">Username or Email</label>
                         <TextField
                           required
-                          id="username"
+                          type="email"
+                          id="email"
                           variant="standard"
                           fullWidth
+                          name="email"
+                          value={formData.email}
+                          onChange={(e) => handleInputChange(e)}
                         />
                       </div>
                       <div className="data-login">
@@ -123,6 +175,9 @@ function Login() {
                           id="password"
                           variant="standard"
                           fullWidth
+                          name="password"
+                          value={formData.password}
+                          onChange={(e) => handleInputChange(e)}
                         />
                       </div>
                     </div>
@@ -132,7 +187,7 @@ function Login() {
                       <div className="login-button">
                         <div className="login-forgot">Forget Password</div>
                         <div className="login-submit">
-                          <button>Submit</button>
+                          <button onClick={handleLogin}>Submit</button>
                         </div>
                       </div>
                       <div className="login-footer">
